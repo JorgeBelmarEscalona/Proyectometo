@@ -1,9 +1,24 @@
-const  express = require("express");
-//const mongoose = require("mongoose");
-const  router = express.Router();
+// Importa el módulo 'express' para crear las rutas
+const express = require('express');
 
-router.route("/").get((req, res) => {                                         // 1
-    res.send(`<h1>Hello World!  3000</h1>`);
-} );
+// Importa el enrutador de usuarios
+const achsRoutes = require('./achs.routes.js');
+const brigadaRoutes = require('./brigada.routes.js');
+const cftRoutes = require('./cft.routes.js');
+const postulanteRoutes = require('./postulante.routes.js');
+const solicitaRoutes = require('./solicita.routes.js');
+const temporadaRoutes = require('./temporada.routes.js');
 
-module.exports = router;                                                // 2
+// Crea una instancia del enrutador
+const router = express.Router();
+
+// Define las rutas para los usuarios /api/usuarios
+router.use('/achs', achsRoutes);
+router.use('/brigada', brigadaRoutes);
+router.use('/cft', cftRoutes);
+router.use('/postulante', postulanteRoutes);
+router.use('/solicita', solicitaRoutes);
+router.use('/temporada', temporadaRoutes);
+
+// Exporta el enrutador
+module.exports = router;

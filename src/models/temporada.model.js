@@ -2,38 +2,37 @@
 const mongoose = require('mongoose');
 
 // Crea el esquema de la colección 'tareas'
-const solicitaSchema = new mongoose.Schema({
-  id_solicitud: {
+const temporadaSchema = new mongoose.Schema({
+  id_temp: {
     type: int,
     required: true,
     notnull: true,
     unique: true,
   },
-  fecha_solicitud: {
-    type: Date,
-    required: true,
-    notnull: true,
-  },
-  estado_solicitud: {
+  nombre_temp: {
     type: String,
     required: true,
     notnull: true,
   },
-  postulante: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'postulante',
+  fecha_inicio: {
+    type: Date,
     required: true,
+    notnull: true,
   },
-  brigada: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'brigada',
+  fecha_termino: {
+    type: Date,
     required: true,
+    notnull: true,
   },
-  
-  
+  descripcion: {
+    type: String,
+    required: true,
+    notnull: true,
+  },
 });
+
 // Crea el modelo de datos 'Tarea' a partir del esquema 'tareaSchema'
-const solicita = mongoose.model('Tarea', solicitaSchema);
+const temporada = mongoose.model('Tarea', temporadaSchema);
 
 // Exporta el modelo de datos 'Tarea'
-module.exports = solicita;
+module.exports = temporada;
