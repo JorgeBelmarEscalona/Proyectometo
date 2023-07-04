@@ -1,28 +1,120 @@
 // Importa el modelo de datos 'solicita'
-const solicita = require('../models/solicita.model.js');
+const Solicita = require('../models/solicita.model.js');
 
+// Obtener todos los registros de solicita
 exports.getSolicita = async (req, res) => {
   try {
-    const solicita = await SOLICITA.find();
-    res.status(200).json(solicita);
+    const solicitaData = await Solicita.find();
+    res.status(200).json(solicitaData);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
+// Crear un nuevo registro de solicita (POST)
 exports.createSolicita = async (req, res) => {
   try {
-    const solicita = new solicita({
-        id_solicita: req.body.id_solicita,
-        fecha_solicitud: req.body.fecha_solicitud,
-        estado_solicitud: req.body.estado_solicitud,
-        id_postulante: req.body.id_postulante,
-        id_brigada: req.body.id_brigada,
+    // Obtener los datos del cuerpo de la solicitud
+    const {
+      id_solicita,
+      fecha_solicitud,
+      estado_solicitud,
+      id_postulante,
+      id_brigada
+    } = req.body;
+    
+    // Crear una nueva instancia del modelo Solicita con los datos proporcionados
+    const newSolicita = new Solicita({
+      id_solicita,
+      fecha_solicitud,
+      estado_solicitud,
+      id_postulante,
+      id_brigada
     });
-
-    const nuevosolicita = await solicita.save();
-    res.status(201).json(nuevosolicita);
+    
+    // Guardar el nuevo registro de solicita en la base de datos
+    const savedSolicita = await newSolicita.save();
+    
+    // Responder con el registro creado
+    res.status(201).json(savedSolicita);
   } catch (error) {
+    // Manejar errores
     res.status(400).json({ message: error.message });
+  }
+};
+
+// Actualizar un registro de solicita existente (PUT)
+exports.updateSolicita = async (req, res) => {
+  try {
+    // Obtener el ID del registro a actualizar de los parámetros de la ruta
+    const solicitaId = req.params.id;
+    
+    // Obtener los nuevos datos del cuerpo de la solicitud
+    const {
+      id_solicita,
+      fecha_solicitud,
+      estado_solicitud,
+      id_postulante,
+      id_brigada
+    } = req.body;
+
+    // Actualizar el registro correspondiente en la base de datos
+    const updatedSolicita = await Solicita.findByIdAndUpdate(
+      solicitaId,
+      {
+        $set: {
+          id_solicita,
+          fecha_solicitud,
+          estado_solicitud,
+          id_postulante,
+          id_brigada
+        },
+      },
+      { new: true }
+    );
+    
+    // Responder con el registro actualizado
+    res.status(200).json(updatedSolicita);
+  } catch (error) {
+    // Manejar errores
+    res.status(400).json({ message: error.message });
+  }
+};
+
+// Obtener un registro de solicita por su ID (Read)
+exports.getSolicitaById = async (req, res) => {
+  try {
+    const solicitaId = req.params.id;
+    const solicita = await Solicita.findById(solicitaId);
+    
+    if (!solicita) {
+      // Si no se encuentra el registro, responder con un mensaje de error
+      res.status(404).json({ message: 'Registro de solicita no encontrado' });
+    } else {
+      // Si se encuentra el registro, responder con el registro encontrado
+      res.status(200).json(solicita);
+    }
+  } catch (error) {
+    // Manejar errores
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Eliminar un registro de solicita por su ID (Delete)
+exports.deleteSolicita = async (req, res) => {
+  try {
+    const solicitaId = req.params.id;
+    const deletedSolicita = await Solicita.findByIdAndRemove(solicitaId);
+    
+    if (!deletedSolicita) {
+      // Si no se encuentra el registro, responder con un mensaje de error
+      res.status(404).json({ message: 'Registro de solicita no encontrado' });
+    } else {
+      // Si se encuentra el registro y se elimina correctamente, responder con el registro eliminado
+      res.status(200).json(deletedSolicita);
+    }
+  } catch (error) {
+    // Manejar errores
+    res.status(500).json({ message: error.message });
   }
 };
