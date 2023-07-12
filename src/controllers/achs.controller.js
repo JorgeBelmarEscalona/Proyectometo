@@ -1,5 +1,6 @@
 // Importa el modelo de datos 'achs'
 const Achs = require('../models/achs.model.js');
+const router = require('../routes/achs.route.js');
 
 // Obtener todos los registros de achs
 exports.getAchs = async (req, res) => {
@@ -55,7 +56,7 @@ exports.getAchsById = async (req, res) => {
 exports.updateAchs = async (req, res) => {
   try {
     // Obtener el ID del registro a actualizar de los parámetros de la ruta
-    const achsId = req.params.id;
+    const achsId = req.params.id_achs;
     
     // Obtener los nuevos datos del cuerpo de la solicitud
     const { id_achs, certificado_achs, direccion_achs, examenes } = req.body;
@@ -97,3 +98,6 @@ exports.deleteAchs = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+
+//module.exports=router;

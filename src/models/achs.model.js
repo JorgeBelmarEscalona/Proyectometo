@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 // Crea el esquema de la colección 'tareas'
 const achsSchema = new mongoose.Schema({
   id_achs: {
-    type: Int,
+    type: Number,
     required: true,
     notnull: true,
     unique: true,

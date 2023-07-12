@@ -4,6 +4,9 @@ const { configEnv } = require('./configEnv.js');
 // Obtiene las variables de entorno
 const { PORT } = configEnv();
 
+// Se obtiene ruta de index
+const indexRouters = require('./routes/index.js'); 
+
 // Importa el archivo 'configDB.js' para crear la conexiÃ³n a la base de datos
 require('./configDB.js');
 
@@ -15,6 +18,8 @@ const app = express();
 
 // Agrega el middleware para el manejo de datos en formato JSON
 app.use(express.json());
+
+app.use(indexRouters);
 
 // Define una ruta para la pÃ¡gina principal de la aplicaciÃ³n ('/')
 // Esta ruta responde con un mensaje de "Hola Mundo" cuando se accede a ella
