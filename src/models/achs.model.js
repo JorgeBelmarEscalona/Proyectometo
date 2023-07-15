@@ -1,7 +1,7 @@
 // Importa el módulo 'mongoose' para crear la conexión a la base de datos
 const mongoose = require('mongoose');
 
-// Crea el esquema de la colección 'tareas'
+// Crea el esquema de la colección 'achs'
 const achsSchema = new mongoose.Schema({
   id_achs: {
     type: Number,
@@ -26,8 +26,8 @@ const achsSchema = new mongoose.Schema({
   },
 });
 
-// Crea el modelo de datos 'Tarea' a partir del esquema 'tareaSchema'
-const achs = mongoose.model('Tarea', achsSchema);
+// Crea el modelo de datos 'Achs' a partir del esquema 'achsSchema'
+const achs = mongoose.model('Achs', achsSchema);
 
 // Exporta el modelo de datos 'Tarea'
 module.exports = achs;

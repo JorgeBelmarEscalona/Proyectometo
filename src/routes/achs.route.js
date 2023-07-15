@@ -10,7 +10,8 @@ const router = express.Router();
 // Define las rutas para los achs
 router.get('/GET', achsController.getAchs);
 router.post('/CREATE', achsController.createAchs);
-router.put('/UPDATE/:id_achs',achsController.updateAchs); 
+router.put('/UPDATE/:id',achsController.updateAchs); 
+router.delete('/DELETE/:id',achsController.deleteAchs);
 
 // Exporta el enrutador 
 module.exports = router;

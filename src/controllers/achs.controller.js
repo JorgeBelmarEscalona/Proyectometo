@@ -1,6 +1,7 @@
 // Importa el modelo de datos 'achs'
 const Achs = require('../models/achs.model.js');
 const router = require('../routes/achs.route.js');
+const mongoose = require('mongoose');
 
 // Obtener todos los registros de achs
 exports.getAchs = async (req, res) => {
@@ -11,6 +12,22 @@ exports.getAchs = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// Obtener un registro de achs por su ID (Read)
+exports.getAchsById = async (req, res) => {
+  try {
+    const achsId = req.params.id;
+    const achsData = await Achs.findById(achsId);
+    if (!achsData) {
+      res.status(404).json({ message: 'Registro de achs no encontrado' });
+    } else {
+      res.status(200).json(achsData);
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 
 // Crear un nuevo registro de achs (POST)
 exports.createAchs = async (req, res) => {
@@ -37,36 +54,26 @@ exports.createAchs = async (req, res) => {
   }
 };
 
-// Obtener un registro de achs por su ID (Read)
-exports.getAchsById = async (req, res) => {
-  try {
-    const achsId = req.params.id;
-    const achsData = await Achs.findById(achsId);
-    if (!achsData) {
-      res.status(404).json({ message: 'Registro de achs no encontrado' });
-    } else {
-      res.status(200).json(achsData);
-    }
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+
 
 // Actualizar un registro de achs existente (PUT)
 exports.updateAchs = async (req, res) => {
   try {
     // Obtener el ID del registro a actualizar de los parámetros de la ruta
-    const achsId = req.params.id_achs;
+    const achsId = req.params.id;
+
+    if (!mongoose.Types.ObjectId.isValid(achsId)) {
+      return res.status(400).json({ message: 'ID de Achs inválido' });
+    }
     
     // Obtener los nuevos datos del cuerpo de la solicitud
-    const { id_achs, certificado_achs, direccion_achs, examenes } = req.body;
+    const {  certificado_achs, direccion_achs, examenes } = req.body;
 
     // Actualizar el registro correspondiente en la base de datos
     const updatedAchs = await Achs.findByIdAndUpdate(
       achsId,
       {
         $set: {
-          id_achs,
           certificado_achs,
           direccion_achs,
           examenes,
