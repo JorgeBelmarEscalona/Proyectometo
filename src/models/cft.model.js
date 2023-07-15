@@ -1,11 +1,10 @@
 // Importa el módulo 'mongoose' para crear la conexión a la base de datos
-const { text } = require('express');
 const mongoose = require('mongoose');
 
-// Crea el esquema de la colección 'tareas'
+// Crea el esquema de la colección 'Cft'
 const cftSchema = new mongoose.Schema({
   id_cft: {
-    type: Int,
+    type: Number,
     required: true,
     notnull: true,
     unique: true,
@@ -33,8 +32,8 @@ const cftSchema = new mongoose.Schema({
 
 });
 
-// Crea el modelo de datos 'Tarea' a partir del esquema 'tareaSchema'
-const cft = mongoose.model('Tarea', cftSchema);
+// Crea el modelo de datos 'Cft' a partir del esquema 'CftSchema'
+const cft = mongoose.model('Cft', cftSchema);
 
-// Exporta el modelo de datos 'Tarea'
+// Exporta el modelo de datos 'Cft'
 module.exports = cft;

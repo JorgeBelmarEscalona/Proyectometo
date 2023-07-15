@@ -1,5 +1,5 @@
 // Importa el módulo 'express' para crear las rutas
-const express = require('express');
+const express = require('../controllers/solicita.controller');
 
 // Importa el controlador de solicita
 const solicitaController = require('../controllers/solicita.controller.js');
@@ -8,8 +8,11 @@ const solicitaController = require('../controllers/solicita.controller.js');
 const router = express.Router();
 
 // Define las rutas para los solicita
-router.get('/', usuarioController.getSolicita);
-router.post('/', usuarioController.createSolicita);
+router.get('/GET', solicitaController.getSolicita);
+router.get('/GET/:id',solicitaController.getSolicitaById)
+router.post('/CREATE', solicitaController.createSolicita);
+router.put('/UPDATE/:id',solicitaController.updateSolicita); 
+router.delete('/DELETE/:id',solicitaController.deleteSolicita);
 
 // Exporta el enrutador
 module.exports = router;

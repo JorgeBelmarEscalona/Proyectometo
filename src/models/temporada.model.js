@@ -1,10 +1,10 @@
 // Importa el módulo 'mongoose' para crear la conexión a la base de datos
 const mongoose = require('mongoose');
 
-// Crea el esquema de la colección 'tareas'
+// Crea el esquema de la colección 'temporadaSChema'
 const temporadaSchema = new mongoose.Schema({
   id_temp: {
-    type: int,
+    type: Number,
     required: true,
     notnull: true,
     unique: true,
@@ -31,8 +31,8 @@ const temporadaSchema = new mongoose.Schema({
   },
 });
 
-// Crea el modelo de datos 'Tarea' a partir del esquema 'tareaSchema'
-const temporada = mongoose.model('Tarea', temporadaSchema);
+// Crea el modelo de datos 'Temporada' a partir del esquema 'TemporadaSchema'
+const temporada = mongoose.model('Temporada', temporadaSchema);
 
-// Exporta el modelo de datos 'Tarea'
+// Exporta el modelo de datos 'temporada'
 module.exports = temporada;

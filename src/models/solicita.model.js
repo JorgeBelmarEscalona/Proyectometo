@@ -1,10 +1,10 @@
 // Importa el módulo 'mongoose' para crear la conexión a la base de datos
 const mongoose = require('mongoose');
 
-// Crea el esquema de la colección 'tareas'
+// Crea el esquema de la colección 'Solicita'
 const solicitaSchema = new mongoose.Schema({
   id_solicitud: {
-    type: int,
+    type: Number,
     required: true,
     notnull: true,
     unique: true,
@@ -32,8 +32,8 @@ const solicitaSchema = new mongoose.Schema({
   
   
 });
-// Crea el modelo de datos 'Tarea' a partir del esquema 'tareaSchema'
-const solicita = mongoose.model('Tarea', solicitaSchema);
+// Crea el modelo de datos 'Solicita' a partir del esquema 'SolicitaSchema'
+const solicita = mongoose.model('Solicita', solicitaSchema);
 
-// Exporta el modelo de datos 'Tarea'
+// Exporta el modelo de datos 'Solicita'
 module.exports = solicita;

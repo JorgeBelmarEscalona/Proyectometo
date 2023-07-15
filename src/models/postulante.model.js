@@ -1,16 +1,16 @@
 // Importa el módulo 'mongoose' para crear la conexión a la base de datos
 const mongoose = require('mongoose');
 
-// Crea el esquema de la colección 'tareas'
+// Crea el esquema de la colección 'Postulante'
 const postulanteSchema = new mongoose.Schema({
   id_postulante: {
-    type: int,
+    type: Number,
     required: true,
     notnull: true,
     unique: true,
   },
   cod_postal: {
-    type: int,
+    type: Number,
     required: true,
     notnull: true,
   },
@@ -31,12 +31,12 @@ const postulanteSchema = new mongoose.Schema({
     notnull: true,
   },
   telefono_postulante: {
-    type: Int,
+    type: Number,
     notnull: true,
     unique: true,
   },
   edad_postulante: {
-    type: Int,
+    type: Number,
     required: true,
     notnull: true,
     unique: true,
@@ -59,8 +59,8 @@ const postulanteSchema = new mongoose.Schema({
 
 });
 
-// Crea el modelo de datos 'Tarea' a partir del esquema 'tareaSchema'
-const postulante = mongoose.model('Tarea', postulanteSchema);
+// Crea el modelo de datos 'Postulante' a partir del esquema 'PostulanteSchema'
+const postulante = mongoose.model('Postulante', postulanteSchema);
 
-// Exporta el modelo de datos 'Tarea'
+// Exporta el modelo de datos 'Postulante'
 module.exports = postulante;// Importa el módulo 'mongoose' para crear la conexión a la base de datos

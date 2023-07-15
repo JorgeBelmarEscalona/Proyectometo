@@ -1,10 +1,10 @@
 // Importa el módulo 'mongoose' para crear la conexión a la base de datos
 const mongoose = require('mongoose');
 
-// Crea el esquema de la colección 'tareas'
+// Crea el esquema de la colección 'Brigada'
 const brigadaSchema = new mongoose.Schema({
   id_brigada: {
-    type: Int,
+    type: Number,
     required: true,
     notnull: true,
     unique: true,
@@ -41,9 +41,9 @@ const brigadaSchema = new mongoose.Schema({
 
 });
 
-// Crea el modelo de datos 'Tarea' a partir del esquema 'tareaSchema'
-const brigada = mongoose.model('Tarea', brigadaSchema);
+// Crea el modelo de datos 'Brigada' a partir del esquema 'BrigadaSchema'
+const brigada = mongoose.model('Brigada', brigadaSchema);
 
-// Exporta el modelo de datos 'Tarea'
+// Exporta el modelo de datos 'Brigada'
 module.exports = brigada;
 
