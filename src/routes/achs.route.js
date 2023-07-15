@@ -9,6 +9,7 @@ const router = express.Router();
 
 // Define las rutas para los achs
 router.get('/GET', achsController.getAchs);
+router.get('/GET/:id',achsController.getAchsById);
 router.post('/CREATE', achsController.createAchs);
 router.put('/UPDATE/:id',achsController.updateAchs); 
 router.delete('/DELETE/:id',achsController.deleteAchs);
