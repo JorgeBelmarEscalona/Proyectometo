@@ -1,5 +1,5 @@
 // Importa el módulo 'express' para crear las rutas
-const express = require('../controllers/temporada.controller');
+const express = require('express');
 
 // Importa el controlador de temporada
 const temporadaController = require('../controllers/temporada.controller.js');

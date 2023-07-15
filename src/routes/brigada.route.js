@@ -1,5 +1,5 @@
 // Importa el módulo 'express' para crear las rutas
-const express = require('../controllers/brigada.controller');
+const express = require('express');
 
 // Importa el controlador de brigada
 const brigadaController = require('../controllers/brigada.controller.js');

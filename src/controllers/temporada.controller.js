@@ -11,6 +11,26 @@ exports.getTemporada = async (req, res) => {
   }
 };
 
+// Obtener un registro de Temporada por su ID (Read)
+exports.getTemporadaById = async (req, res) => {
+  try {
+    const temporadaId = req.params.id;
+    const temporada = await Temporada.findById(temporadaId);
+    
+    if (!temporada) {
+      // Si no se encuentra el registro, responder con un mensaje de error
+      res.status(404).json({ message: 'Registro de Temporada no encontrado' });
+    } else {
+      // Si se encuentra el registro, responder con el registro encontrado
+      res.status(200).json(temporada);
+    }
+  } catch (error) {
+    // Manejar errores
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
 // Crear un nuevo registro de Temporada (POST)
 exports.createTemporada = async (req, res) => {
   try {
@@ -81,24 +101,6 @@ exports.updateTemporada = async (req, res) => {
   }
 };
 
-// Obtener un registro de Temporada por su ID (Read)
-exports.getTemporadaById = async (req, res) => {
-  try {
-    const temporadaId = req.params.id;
-    const temporada = await Temporada.findById(temporadaId);
-    
-    if (!temporada) {
-      // Si no se encuentra el registro, responder con un mensaje de error
-      res.status(404).json({ message: 'Registro de Temporada no encontrado' });
-    } else {
-      // Si se encuentra el registro, responder con el registro encontrado
-      res.status(200).json(temporada);
-    }
-  } catch (error) {
-    // Manejar errores
-    res.status(500).json({ message: error.message });
-  }
-};
 
 // Eliminar un registro de Temporada por su ID (Delete)
 exports.deleteTemporada = async (req, res) => {

@@ -1,6 +1,6 @@
 
 // Importa el módulo 'express' para crear las rutas
-const express = require('../controllers/postulante.controller');
+const express = require('express');
 
 // Importa el controlador de postulante
 const postulanteController = require('../controllers/postulante.controller.js');

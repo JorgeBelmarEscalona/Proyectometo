@@ -39,7 +39,7 @@ const postulanteSchema = new mongoose.Schema({
     type: Number,
     required: true,
     notnull: true,
-    unique: true,
+  
   },
   achs: {
     type: mongoose.Schema.Types.ObjectId,

@@ -1,5 +1,5 @@
 // Importa el módulo 'express' para crear las rutas
-const express = require('../controllers/solicita.controller');
+const express = require('express');
 
 // Importa el controlador de solicita
 const solicitaController = require('../controllers/solicita.controller.js');

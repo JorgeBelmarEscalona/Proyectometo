@@ -11,6 +11,22 @@ exports.getBrigada = async (req, res) => {
   }
 };
 
+// Obtener un registro de brigada por su ID (Read)
+exports.getBrigadaById = async (req, res) => {
+  try {
+    const brigadaId = req.params.id;
+    const brigadaData = await Brigada.findById(brigadaId);
+    if (!brigadaData) {
+      res.status(404).json({ message: 'Registro de brigada no encontrado' });
+    } else {
+      res.status(200).json(brigadaData);
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
 // Crear un nuevo registro de brigada (POST)
 exports.createBrigada = async (req, res) => {
   try {
@@ -24,7 +40,7 @@ exports.createBrigada = async (req, res) => {
       activa,
       temporada
     } = req.body;
-    
+   
     // Crear una nueva instancia del modelo Brigada con los datos proporcionados
     const newBrigada = new Brigada({
       id_brigada,
@@ -35,12 +51,13 @@ exports.createBrigada = async (req, res) => {
       activa,
       temporada
     });
-    
+   
     // Guardar el nuevo registro de brigada en la base de datos
     const savedBrigada = await newBrigada.save();
-    
+
     // Responder con el registro creado
     res.status(201).json(savedBrigada);
+  
   } catch (error) {
     // Manejar errores
     res.status(400).json({ message: error.message });
@@ -89,20 +106,7 @@ exports.updateBrigada = async (req, res) => {
   }
 };
 
-// Obtener un registro de brigada por su ID (Read)
-exports.getBrigadaById = async (req, res) => {
-  try {
-    const brigadaId = req.params.id;
-    const brigadaData = await Brigada.findById(brigadaId);
-    if (!brigadaData) {
-      res.status(404).json({ message: 'Registro de brigada no encontrado' });
-    } else {
-      res.status(200).json(brigadaData);
-    }
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+
 
 // Eliminar un registro de brigada existente (Delete)
 exports.deleteBrigada = async (req, res) => {

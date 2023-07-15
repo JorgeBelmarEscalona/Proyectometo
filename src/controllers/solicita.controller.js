@@ -11,6 +11,25 @@ exports.getSolicita = async (req, res) => {
   }
 };
 
+// Obtener un registro de solicita por su ID (Read)
+exports.getSolicitaById = async (req, res) => {
+  try {
+    const solicitaId = req.params.id;
+    const solicita = await Solicita.findById(solicitaId);
+    
+    if (!solicita) {
+      // Si no se encuentra el registro, responder con un mensaje de error
+      res.status(404).json({ message: 'Registro de solicita no encontrado' });
+    } else {
+      // Si se encuentra el registro, responder con el registro encontrado
+      res.status(200).json(solicita);
+    }
+  } catch (error) {
+    // Manejar errores
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // Crear un nuevo registro de solicita (POST)
 exports.createSolicita = async (req, res) => {
   try {
@@ -81,24 +100,7 @@ exports.updateSolicita = async (req, res) => {
   }
 };
 
-// Obtener un registro de solicita por su ID (Read)
-exports.getSolicitaById = async (req, res) => {
-  try {
-    const solicitaId = req.params.id;
-    const solicita = await Solicita.findById(solicitaId);
-    
-    if (!solicita) {
-      // Si no se encuentra el registro, responder con un mensaje de error
-      res.status(404).json({ message: 'Registro de solicita no encontrado' });
-    } else {
-      // Si se encuentra el registro, responder con el registro encontrado
-      res.status(200).json(solicita);
-    }
-  } catch (error) {
-    // Manejar errores
-    res.status(500).json({ message: error.message });
-  }
-};
+
 
 // Eliminar un registro de solicita por su ID (Delete)
 exports.deleteSolicita = async (req, res) => {

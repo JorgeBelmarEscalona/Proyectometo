@@ -11,6 +11,21 @@ exports.getCft = async (req, res) => {
   }
 };
 
+// Obtener un registro de cft por su ID (Read)
+exports.getCftById = async (req, res) => {
+  try {
+    const cftId = req.params.id;
+    const cftData = await CFT.findById(cftId);
+    if (!cftData) {
+      res.status(404).json({ message: 'Registro de cft no encontrado' });
+    } else {
+      res.status(200).json(cftData);
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // Crear un nuevo registro de cft (POST)
 exports.createCft = async (req, res) => {
   try {
@@ -81,20 +96,7 @@ exports.updateCft = async (req, res) => {
   }
 };
 
-// Obtener un registro de cft por su ID (Read)
-exports.getCftById = async (req, res) => {
-  try {
-    const cftId = req.params.id;
-    const cftData = await CFT.findById(cftId);
-    if (!cftData) {
-      res.status(404).json({ message: 'Registro de cft no encontrado' });
-    } else {
-      res.status(200).json(cftData);
-    }
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+
 
 // Eliminar un registro de cft existente (Delete)
 exports.deleteCft = async (req, res) => {

@@ -11,6 +11,26 @@ exports.getPostulante = async (req, res) => {
   }
 };
 
+// Obtener un registro de postulante por su ID (Read)
+exports.getPostulanteById = async (req, res) => {
+  try {
+    const postulanteId = req.params.id;
+    const postulante = await Postulante.findById(postulanteId);
+    
+    if (!postulante) {
+      // Si no se encuentra el registro, responder con un mensaje de error
+      res.status(404).json({ message: 'Registro de postulante no encontrado' });
+    } else {
+      // Si se encuentra el registro, responder con el registro encontrado
+      res.status(200).json(postulante);
+    }
+  } catch (error) {
+    // Manejar errores
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
 // Crear un nuevo registro de postulante (POST)
 exports.createPostulante = async (req, res) => {
   try {
@@ -23,11 +43,12 @@ exports.createPostulante = async (req, res) => {
       nivel_escolar,
       telefono_postulante,
       edad_postulante,
-      id_achs,
-      id_brigada,
-      id_cft
+      achs,
+      brigada,
+      cft
     } = req.body;
-    
+  
+
     // Crear una nueva instancia del modelo Postulante con los datos proporcionados
     const newPostulante = new Postulante({
       id_postulante,
@@ -37,14 +58,14 @@ exports.createPostulante = async (req, res) => {
       nivel_escolar,
       telefono_postulante,
       edad_postulante,
-      id_achs,
-      id_brigada,
-      id_cft
+      achs,
+      brigada,
+      cft
     });
-    
     // Guardar el nuevo registro de postulante en la base de datos
     const savedPostulante = await newPostulante.save();
-    
+   
+
     // Responder con el registro creado
     res.status(201).json(savedPostulante);
   } catch (error) {
@@ -68,9 +89,9 @@ exports.updatePostulante = async (req, res) => {
       nivel_escolar,
       telefono_postulante,
       edad_postulante,
-      id_achs,
-      id_brigada,
-      id_cft
+      achs,
+      brigada,
+      cft
     } = req.body;
 
     // Actualizar el registro correspondiente en la base de datos
@@ -85,15 +106,16 @@ exports.updatePostulante = async (req, res) => {
           nivel_escolar,
           telefono_postulante,
           edad_postulante,
-          id_achs,
-          id_brigada,
-          id_cft
+          achs,
+          brigada,
+          cft
         },
       },
       { new: true }
     );
     
     // Responder con el registro actualizado
+    console.log("ENTRA AQUI");
     res.status(200).json(updatedPostulante);
   } catch (error) {
     // Manejar errores
@@ -101,24 +123,6 @@ exports.updatePostulante = async (req, res) => {
   }
 };
 
-// Obtener un registro de postulante por su ID (Read)
-exports.getPostulanteById = async (req, res) => {
-  try {
-    const postulanteId = req.params.id;
-    const postulante = await Postulante.findById(postulanteId);
-    
-    if (!postulante) {
-      // Si no se encuentra el registro, responder con un mensaje de error
-      res.status(404).json({ message: 'Registro de postulante no encontrado' });
-    } else {
-      // Si se encuentra el registro, responder con el registro encontrado
-      res.status(200).json(postulante);
-    }
-  } catch (error) {
-    // Manejar errores
-    res.status(500).json({ message: error.message });
-  }
-};
 
 // Eliminar un registro de postulante por su ID (Delete)
 exports.deletePostulante = async (req, res) => {

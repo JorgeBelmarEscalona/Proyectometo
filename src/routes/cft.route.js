@@ -1,6 +1,6 @@
 
 // Importa el módulo 'express' para crear las rutas
-const express = require('../controllers/cft.controller');
+const express = require('express');
 
 // Importa el controlador de cft
 const cftController = require('../controllers/cft.controller.js');
