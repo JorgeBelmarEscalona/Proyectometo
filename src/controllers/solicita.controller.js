@@ -67,7 +67,13 @@ exports.updateSolicita = async (req, res) => {
   try {
     // Obtener el ID del registro a actualizar de los parámetros de la ruta
     const solicitaId = req.params.id;
-    
+  
+   // Verificar si el postulante existe en la base de datos
+   const existingSolicita = await Solicita.findById(solicitaId);
+   if (!existingSolicita) {
+     return res.status(404).json({ message: 'No se encontró ningúna solicitud con el ID proporcionado' });
+   }
+
     // Obtener los nuevos datos del cuerpo de la solicitud
     const {
       id_solicita,

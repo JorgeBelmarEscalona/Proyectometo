@@ -69,6 +69,12 @@ exports.updateTemporada = async (req, res) => {
     // Obtener el ID del registro a actualizar de los parámetros de la ruta
     const temporadaId = req.params.id;
     
+   // Verificar si el postulante existe en la base de datos
+   const existingTemporada = await Temporada.findById(temporadaId);
+   if (!existingTemporada) {
+     return res.status(404).json({ message: 'No se encontró ningúna temporada con el ID proporcionado' });
+   }
+
     // Obtener los nuevos datos del cuerpo de la solicitud
     const {
       id_temp,

@@ -70,6 +70,12 @@ exports.updateBrigada = async (req, res) => {
     // Obtener el ID del registro a actualizar de los parámetros de la ruta
     const brigadaId = req.params.id;
     
+      // Verificar si el brigada existe en la base de datos
+      const existingBrigada = await Brigada.findById(brigadaId);
+      if (!existingBrigada) {
+        return res.status(404).json({ message: 'No se encontró ningúna brigada con el ID proporcionado' });
+      }
+
     // Obtener los nuevos datos del cuerpo de la solicitud
     const {
       id_brigada,

@@ -1,4 +1,5 @@
 // Importa el modelo de datos 'achs'
+const achs = require('../models/achs.model.js');
 const Achs = require('../models/achs.model.js');
 const router = require('../routes/achs.route.js');
 const mongoose = require('mongoose');
@@ -62,10 +63,11 @@ exports.updateAchs = async (req, res) => {
     // Obtener el ID del registro a actualizar de los parámetros de la ruta
     const achsId = req.params.id;
 
-    if (!mongoose.Types.ObjectId.isValid(achsId)) {
-      return res.status(400).json({ message: 'ID de Achs inválido' });
-    }
-    
+       // Verificar si el achs existe en la base de datos
+       const existingAchs = await achs.findById(achsId);
+       if (!existingAchs) {
+         return res.status(404).json({ message: 'No se encontró ningún achs con el ID proporcionado' });
+       }
     // Obtener los nuevos datos del cuerpo de la solicitud
     const {  certificado_achs, direccion_achs, examenes } = req.body;
 

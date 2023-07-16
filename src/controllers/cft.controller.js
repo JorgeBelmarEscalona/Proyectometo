@@ -64,6 +64,12 @@ exports.updateCft = async (req, res) => {
     // Obtener el ID del registro a actualizar de los parámetros de la ruta
     const cftId = req.params.id;
     
+      // Verificar si el cft existe en la base de datos
+      const existingCft = await Cft.findById(cftId);
+      if (!existingCft) {
+        return res.status(404).json({ message: 'No se encontró ningún Cft con el ID proporcionado' });
+      }
+
     // Obtener los nuevos datos del cuerpo de la solicitud
     const {
       id_cft,
