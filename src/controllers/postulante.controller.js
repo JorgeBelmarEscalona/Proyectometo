@@ -79,7 +79,12 @@ exports.updatePostulante = async (req, res) => {
   try {
     // Obtener el ID del registro a actualizar de los parámetros de la ruta
     const postulanteId = req.params.id;
-    
+
+     // Verificar si el postulante existe en la base de datos
+     const existingPostulante = await Postulante.findById(postulanteId);
+     if (!existingPostulante) {
+       return res.status(404).json({ message: 'No se encontró ningún postulante con el ID proporcionado' });
+     }
     // Obtener los nuevos datos del cuerpo de la solicitud
     const {
       id_postulante,
@@ -115,7 +120,6 @@ exports.updatePostulante = async (req, res) => {
     );
     
     // Responder con el registro actualizado
-    console.log("ENTRA AQUI");
     res.status(200).json(updatedPostulante);
   } catch (error) {
     // Manejar errores

@@ -3,18 +3,18 @@ const mongoose = require('mongoose');
 
 // Crea el esquema de la colección 'Solicita'
 const solicitaSchema = new mongoose.Schema({
-  id_solicitud: {
+  id_solicita: {
     type: Number,
     required: true,
     notnull: true,
     unique: true,
   },
-  fecha_solicitud: {
+  fecha_solicita: {
     type: Date,
     required: true,
     notnull: true,
   },
-  estado_solicitud: {
+  estado_solicita: {
     type: String,
     required: true,
     notnull: true,

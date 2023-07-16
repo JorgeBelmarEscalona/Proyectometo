@@ -36,19 +36,19 @@ exports.createSolicita = async (req, res) => {
     // Obtener los datos del cuerpo de la solicitud
     const {
       id_solicita,
-      fecha_solicitud,
-      estado_solicitud,
-      id_postulante,
-      id_brigada
+      fecha_solicita,
+      estado_solicita,
+      postulante,
+      brigada
     } = req.body;
     
     // Crear una nueva instancia del modelo Solicita con los datos proporcionados
     const newSolicita = new Solicita({
       id_solicita,
-      fecha_solicitud,
-      estado_solicitud,
-      id_postulante,
-      id_brigada
+      fecha_solicita,
+      estado_solicita,
+      postulante,
+      brigada
     });
     
     // Guardar el nuevo registro de solicita en la base de datos
@@ -71,10 +71,10 @@ exports.updateSolicita = async (req, res) => {
     // Obtener los nuevos datos del cuerpo de la solicitud
     const {
       id_solicita,
-      fecha_solicitud,
-      estado_solicitud,
-      id_postulante,
-      id_brigada
+      fecha_solicita,
+      estado_solicita,
+      postulante,
+      brigada
     } = req.body;
 
     // Actualizar el registro correspondiente en la base de datos
@@ -83,10 +83,10 @@ exports.updateSolicita = async (req, res) => {
       {
         $set: {
           id_solicita,
-          fecha_solicitud,
-          estado_solicitud,
-          id_postulante,
-          id_brigada
+          fecha_solicita,
+          estado_solicita,
+          postulante,
+          brigada
         },
       },
       { new: true }
