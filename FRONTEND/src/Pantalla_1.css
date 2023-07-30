@@ -1,0 +1,46 @@
+/*Barra superior*/
+
+div.barraSuperior {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #172B85;
+    height: 50px;
+    width: 100%;
+
+}
+
+.Brigadas_de_conce{
+    color: #ffffff;
+    position: absolute;
+    top: 10px;
+    left: 100px;
+    font-weight: normal;
+    font-size: 4px;
+    font-family: Arial;
+    text-transform: uppercase;
+}
+
+.login {
+    color: #ffffff;
+    position: fixed;
+    top: 15px;
+    right: 400px;
+    font-weight: normal;
+    font-size: 15px;
+    font-family: Arial;
+    text-transform: uppercase;
+    background-color: transparent;
+  }
+  .preguntasfrecuentes {
+    color: #ffffff;
+    position: fixed;
+    top: 15px;
+    right: 100px;
+    font-weight: normal;
+    font-size: 15px;
+    font-family: Arial;
+    text-transform: uppercase;
+    background-color: transparent;
+    margin-left: 205px; /* Agregamos margen izquierdo para separar de "login" */
+}
