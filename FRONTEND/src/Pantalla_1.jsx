@@ -15,6 +15,7 @@ function MiComponente() {
         <button className="login">Login</button>
         <button className="preguntasfrecuentes">Preguntas Frecuentes</button>
         <button className="postula">Postula</button>
+        
        
       </div>
     </div>
