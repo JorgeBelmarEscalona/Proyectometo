@@ -15,7 +15,7 @@ function MiComponente() {
         <button className="login">Login</button>
         <button className="preguntasfrecuentes">Preguntas Frecuentes</button>
         <button className="postula">Postula</button>
-        <img src="bombero.svg" style="float: right; width: 100px; height: 100px;"></img>
+       
       </div>
     </div>
   );
