@@ -15,12 +15,12 @@ const OpcionPostula = () => {
         <InscripcionPostulante />
       ) : (
         <>
-          <Button variant="contained" color="primary" size="large" onClick={handleRealizarPostulacionClick} sx={{ mb: 2, backgroundColor: '#DF0808' }}>
+          <Button variant="contained" color="primary" fullWidth="40" size="large" onClick={handleRealizarPostulacionClick} sx={{ mb: 2, backgroundColor: '#DF0808' }}>
             Realizar Postulación
           </Button>
-          <Box sx={{ height: 30 }} />
-          <Button variant="contained" color="primary" size="large" sx={{ backgroundColor: '#DF0808' }}>
-            Revisar Solicitudes
+          
+          <Button variant="contained" color="primary" fullWidth="40" size="large" sx={{ backgroundColor: '#DF0808' }}>
+            Revisar  Solicitudes
           </Button>
         </>
       )}

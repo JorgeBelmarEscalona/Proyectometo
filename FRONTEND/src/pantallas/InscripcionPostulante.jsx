@@ -33,10 +33,12 @@ const FormularioPostulante = () => {
           flexDirection: 'column',
           alignItems: 'center',
           width: '100%',
-          maxWidth: 400,
+          height: '100%',
+          maxWidth: 1500,
           padding: 16,
           backgroundColor: '#f0f0f0',
           borderRadius: 8,
+          ml: 4,
         }}
       >
         <Typography variant="h4" component="div" sx={{ mb: 4 }}>
